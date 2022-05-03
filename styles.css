@@ -1,18 +1,28 @@
 *{
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
     color: black;
 }
-.container{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 8em;
-    justify-content: center;
+.searchContainer, .weatherDetails, .fiveDays, .cityHistory{
+    display: inline-block;
+    display:flex;
 }
-.details{
+.searchContainer{
+    float: left;
+    height: auto;
+}
+
+.weatherDetails{
+    float: right;
+    height: 500px;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+}
+.fiveDays{
+    float: right;
+    height: 300px;
+    padding-top: 325px;
+    padding-right: 50%;
+}
+.cityHistory{
+    flex-direction: column;
 }
