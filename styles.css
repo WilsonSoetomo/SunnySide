@@ -2,27 +2,41 @@
     padding: 0;
     margin: 0;
     color: black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+body{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 .searchContainer, .weatherDetails, .fiveDays, .cityHistory{
     display: inline-block;
     display:flex;
 }
 .searchContainer{
-    float: left;
     height: auto;
+    width: 300px;
+    flex-wrap: wrap;
 }
 
 .weatherDetails{
-    float: right;
     height: 500px;
     flex-direction: column;
+    width: 50%;
+    position: relative;
 }
 .fiveDays{
     float: right;
     height: 300px;
     padding-top: 325px;
     padding-right: 50%;
+    flex-direction: wrap;
 }
 .cityHistory{
     flex-direction: column;
+    max-width: 300px;
+    float: left;
+}
+.searchBar{
+max-height: 100px;
 }
