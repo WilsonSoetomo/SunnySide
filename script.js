@@ -10,12 +10,16 @@ var fiveDaysDiv = $(".fiveDays");
 // GIVEN a weather dashboard with form inputs
 
 function appendCityList(city, i) {
-  $(".cityHistory").append(
-    `<button data-city="${city}" class="cityButton" id="city-${i}"><span class="cityName">${city}</span></button>`
-  );
-  console.log(city);
-  console.log(i);
+  if (city.length != 13) {
+    $(".cityHistory").append(
+      `<button data-city="${city}" class="cityButton" id="city-${i}"><span class="cityName">${city}</span></button>`
+    );
+  }
 }
+//click event on cityHistory, use jquery event delegation
+$(".cityHistory").on("click", "button", function (e) {
+  getCity($(this).text());
+});
 //function to take in a city and does a API search, maybe also appends results on page with dynamic html
 function getCity(city) {
   console.log("WILSONS CITY --- ", city);
@@ -106,3 +110,4 @@ function make5Days(daily) {
     fiveDaysDiv.append(div);
   }
 }
+window.onload = makeCityList;

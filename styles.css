@@ -1,42 +1,73 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
 *{
     padding: 0;
     margin: 0;
     color: black;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: orange;
 }
-body{
-    display: flex;
-    justify-content: space-between;
+header{
+    position: relative;
     flex-wrap: wrap;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    transition: 0.5s;
+    background-color: white;
+    font-size: 2em;
+    padding-top: 5%;
+}
+
+body{
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: orange;
 }
 .searchContainer, .weatherDetails, .fiveDays, .cityHistory{
     display: inline-block;
     display:flex;
 }
+.cityButton{
+    line-height: normal;
+}
 .searchContainer{
     height: auto;
-    width: 300px;
+    width: 30%;
     flex-wrap: wrap;
+    padding-right: 20%;
+    flex-direction: column;
 }
+.searchBarBtn{
+    width: -webkit-fill-available;}
 
 .weatherDetails{
     height: 500px;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
     position: relative;
 }
+.weatherIcon{
+    width: 50px;
+    height: 50px;
+}
 .fiveDays{
-    float: right;
-    height: 300px;
-    padding-top: 325px;
-    padding-right: 50%;
-    flex-direction: wrap;
+        flex-direction: wrap;
 }
 .cityHistory{
     flex-direction: column;
     max-width: 300px;
-    float: left;
 }
 .searchBar{
-max-height: 100px;
-}
+    max-height: 100px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;}
