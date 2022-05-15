@@ -7,22 +7,26 @@ html {
     margin: 0;
     color: black;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: orange;
+}
+aside{
+    flex: 1,1,1;
+    display: flex;
 }
 header{
-    position: relative;
-    flex-wrap: wrap;
-    top: 0;
-    left: 0;
+
     width: 100%;
     z-index: 1000;
     display: flex;
     text-align: center;
+    margin: auto;
     align-items: center;
     transition: 0.5s;
     background-color: white;
     font-size: 2em;
-    padding-top: 5%;
+    border-bottom-style: solid;
+    border-bottom-color: cadetblue;
+    border-bottom-width: 5px;
+    max-height: 100px;
 }
 
 body{
@@ -30,7 +34,6 @@ body{
     overflow: auto;
     display: flex;
     flex-wrap: wrap;
-    background-color: orange;
 }
 .searchContainer, .weatherDetails, .fiveDays, .cityHistory{
     display: inline-block;
@@ -54,6 +57,7 @@ body{
     flex-direction: column;
     width: 70%;
     position: relative;
+    padding-left: 5%;
 }
 .weatherIcon{
     width: 50px;
@@ -65,6 +69,26 @@ body{
 .cityHistory{
     flex-direction: column;
     max-width: 300px;
+}
+.cityHistory .cityButton, .cityName{
+    max-width: 90%;}
+.cityButton{
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border-color: grey;
+}
+.cityButton:hover{
+    background-color: rgb(107, 107, 107);
+    border-radius: 5px;
+    border-color: grey;
+}
+.cityButton .cityName:hover{
+    background-color: rgb(107, 107, 107);
+    border-radius: 5px;
+    border-color: grey;
+}
+.cityHere, .searchBarBtn, .cityName {
+    border-radius: 20px;
 }
 .searchBar{
     max-height: 100px;

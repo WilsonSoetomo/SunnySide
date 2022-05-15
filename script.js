@@ -2,13 +2,13 @@ var cityList = document.querySelector(".cityHistory");
 var APIkey = "3d6e43d79aa3e316dee7cb1fc394f4b1";
 var cities = JSON.parse(localStorage.getItem("city")) || [];
 var APIcity = "https://api.openweathermap.org/data/2.5/weather";
-var APIcord = "http://api.openweathermap.org/data/2.5/onecall";
+var APIcord = "https://api.openweathermap.org/data/2.5/onecall";
 let submitBtn = document.querySelector(".searchBarBtn");
 var inputEl = document.querySelector(".cityHere");
 var currentHour = new Date();
 var fiveDaysDiv = $(".fiveDays");
-// GIVEN a weather dashboard with form inputs
 
+// GIVEN a weather dashboard with form inputs
 function appendCityList(city, i) {
   if (city.length != 13) {
     $(".cityHistory").append(
@@ -21,7 +21,7 @@ $(".cityHistory").on("click", "button", function (e) {
   getCity($(this).text());
 });
 //function to take in a city and does a API search, maybe also appends results on page with dynamic html
-function getCity(city) {
+function getCity(city, locObj) {
   console.log("WILSONS CITY --- ", city);
   fetch(APIcity + `?q=${encodeURI(city)}&appid=${APIkey}`)
     .then((cityRes) => cityRes.json())
@@ -34,8 +34,14 @@ function getCity(city) {
         localStorage.setItem("city", JSON.stringify(cities));
         makeCityList();
       }
-      var lat = cityData.coord.lat;
-      var lon = cityData.coord.lon;
+      console.log(locObj);
+      if (cityData.message == "Nothing to geocode") {
+        var lat = locObj.lat;
+        var lon = locObj.lon;
+      } else {
+        var lat = cityData.coord.lat;
+        var lon = cityData.coord.lon;
+      }
       fetch(APIcord + `?lat=${lat}&lon=${lon}&appid=${APIkey}`)
         .then((corRes) => corRes.json())
         .then((corData) => {
@@ -111,3 +117,24 @@ function make5Days(daily) {
   }
 }
 window.onload = makeCityList;
+var options = {
+  enableHighAccuracy: true,
+  timeout: 10000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  var crd = pos.coords;
+  console.log(pos);
+  console.log("Your current position is:");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+  getCity("", { lat: crd.latitude, lon: crd.longitude });
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
