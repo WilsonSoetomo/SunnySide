@@ -8,26 +8,26 @@ var inputEl = document.querySelector(".cityHere");
 var currentHour = new Date();
 var fiveDaysDiv = $(".fiveDays");
 
-// GIVEN a weather dashboard with form inputs
-function appendCityList(city, i) {
-  if (city.length != 13) {
-    $(".cityHistory").append(
-      `<button data-city="${city}" class="cityButton" id="city-${i}"><span class="cityName">${city}</span></button>`
-    );
-  }
-}
-//click event on cityHistory, use jquery event delegation
-$(".cityHistory").on("click", "button", function (e) {
-  getCity($(this).text());
-});
+ useEffect(() => {
+    const submitButton = document.querySelector(".submitButton");
+    submitButton.addEventListener("click", () => {
+      getCity(searchedCity.trim());
+    });
+
+    return () => {
+      submitButton.removeEventListener("click", () => {
+        getCity(searchedCity.trim());
+      });
+    };
+  }, [searchedCity]);
 //function to take in a city and does a API search, maybe also appends results on page with dynamic html
 function getCity(city, locObj) {
   console.log("WILSONS CITY --- ", city);
   fetch(APIcity + `?q=${encodeURI(city)}&appid=${APIkey}`)
     .then((cityRes) => cityRes.json())
-    .then((cityData) => {
+    .then((cityData) => 
+    {
       console.log(cityData);
-
       //adding searched city to the list, saving in localStorage
       if (!cities.includes(city)) {
         cities.push(city);
@@ -79,7 +79,8 @@ function getCity(city, locObj) {
 }
 //checks for cities stored in localStorage, append them on page if any
 
-function makeCityList() {
+function makeCityList() 
+{
   cityList.innerHTML = "";
   var cityArr = JSON.parse(localStorage.getItem("city")) || [];
   //loop through cityArr to make buttons
@@ -87,10 +88,12 @@ function makeCityList() {
     appendCityList(cityArr[i], i);
   }
 }
-submitBtn.addEventListener("click", function () {
+submitBtn.addEventListener("click", function () 
+{
   getCity(inputEl.value.trim());
 });
-function make5Days(daily) {
+function make5Days(daily) 
+{
   fiveDaysDiv.html("");
   for (i = 1; i < 6; i++) {
     console.log(daily);
