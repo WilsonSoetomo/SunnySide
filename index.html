@@ -2,95 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wilson's Wacky Weather Website</title>
-
-    <!-- Bootstrap CSS for layout -->
+    <title>Sunny Side Weather</title>
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-
-    <!-- FontAwesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-
-    <!-- Google Fonts for custom font -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./styles.css" />
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Header -->
-    <header class="text-center py-4 bg-info text-white">
-      <h1><i class="fas fa-cloud-sun"></i> Wilson's Wacky Weather Website</h1>
-    </header>
+    <div class="container">
+      <header class="my-4 text-center">
+        <h1>🌤️ Sunny Side</h1>
+        <p>Hope it's Sunny where you are!</p>
+      </header>
 
-    <!-- Search Container -->
-    <section class="searchContainer container mt-5">
-      <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-          <div class="input-group mb-3">
+      <div class="row">
+        <!-- Search Area -->
+        <div class="col-md-6">
+          <div class="mb-3">
             <input
               type="text"
               class="form-control cityHere"
-              placeholder="Search weather here!"
-              aria-label="City search"
-              aria-describedby="search-button"
+              placeholder="Search for a city"
             />
-            <div class="input-group-append">
-              <button
-                class="btn btn-primary searchBarBtn"
-                type="button"
-                id="search-button"
-              >
-                <i class="fas fa-search"></i> Search
-              </button>
-            </div>
+          </div>
+          <button class="btn btn-primary w-100 searchBarBtn">Search</button>
+
+          <!-- City History -->
+          <div class="mt-4">
+            <h3>Search History</h3>
+            <ul class="list-group cityHistory"></ul>
           </div>
         </div>
-      </div>
 
-      <!-- City History -->
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="cityHistory btn-group d-flex flex-wrap"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Weather Details -->
-    <section class="weatherDetails container mt-5">
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-          <h2 class="cityNameDate"></h2>
-          <img class="weatherIcon my-3" alt="Weather icon" />
-          <p>Temperature: <span class="temp"></span> °F</p>
+        <!-- Weather Details -->
+        <div class="col-md-6 weatherDetails">
+          <h2 class="cityNameDate mt-4"></h2>
+          <img class="weatherIcon my-2" alt="Weather Icon" />
+          <p>Temperature: <span class="temp"></span></p>
           <p>Wind Speed: <span class="wind"></span> MPH</p>
-          <p>Humidity: <span class="humidity"></span> %</p>
-          <p>
-            UV Index: <span class="uv badge badge-pill"></span>
-          </p>
+          <p>Humidity: <span class="humidity"></span>%</p>
+          <p>UV Index: <span class="uv"></span></p>
+          <div class="fiveDays row mt-4"></div>
         </div>
       </div>
+    </div>
 
-      <!-- 5-Day Forecast -->
-      <div class="fiveDays row justify-content-center mt-4"></div>
-    </section>
-
-    <!-- Custom JS -->
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

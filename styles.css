@@ -1,173 +1,205 @@
 /* General Styles */
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom, #ff9966, #ff5e62);
+    background-size: cover;
     color: #333;
     margin: 0;
     padding: 0;
     line-height: 1.6;
   }
   
+  h1, h2 {
+    font-weight: 700;
+  }
+  
+  /* Container for app */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
   /* Header */
   header {
-    background-color: #007bff;
+    background-color: #ff5e62;
     color: #fff;
-    padding: 15px 0;
+    padding: 15px;
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: 600;
+    border-radius: 8px;
+    margin-bottom: 15px;
   }
   
-  /* Search Container */
-  .searchContainer {
-    padding: 20px;
-    text-align: center;
+  header h1 {
+    font-size: 1.8rem;
   }
   
-  .searchContainer .input-group {
-    max-width: 500px;
-    margin: 0 auto;
+  header p {
+    font-size: 1.1rem;
+    color: #f0f0f0;
   }
   
-  .cityHere {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
+  /* Search Area */
   .searchBarBtn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background-color: #ff5e62;
+    color: #fff;
     border: none;
+    padding: 8px 12px;
+    font-size: 0.9rem;
     border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
+    transition: background-color 0.3s ease;
     width: 100%;
+    max-width: 180px;
+    margin: 10px auto;
   }
   
   .searchBarBtn:hover {
-    background-color: #0056b3;
+    background-color: #ff9966;
+  }
+  
+  .cityHere {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #333;
+    background-color: #fff;
   }
   
   /* City History */
   .cityHistory {
-    margin-top: 20px;
+    margin-top: 15px;
   }
   
-  .cityHistory button {
-    background-color: #e9ecef;
-    border: 1px solid #007bff;
-    color: #007bff;
-    font-size: 1rem;
-    margin: 5px;
-    padding: 8px 12px;
-    border-radius: 5px;
+  .city-item {
     cursor: pointer;
+    padding: 8px;
+    background-color: #f8f9fa;
+    margin-bottom: 5px;
+    border: 1px solid #ff5e62;
+    border-radius: 5px;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  .cityHistory button:hover {
-    background-color: #007bff;
+  .city-item:hover {
+    background-color: #ff9966;
     color: #fff;
   }
   
   /* Weather Details */
   .weatherDetails {
     text-align: center;
-    margin-top: 30px;
-    padding: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
   }
   
   .weatherDetails h2 {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
   }
   
-  .weatherDetails img {
+  .weatherIcon {
     width: 80px;
     height: 80px;
-    margin: 10px 0;
+    margin-bottom: 8px;
   }
   
   .weatherDetails p {
     font-size: 1rem;
-    margin: 5px 0;
+    margin: 4px 0;
+    color: #333;
   }
   
+  /* UV Index Styles */
   .uv {
+    font-weight: bold;
     padding: 5px 10px;
-    font-size: 1rem;
     border-radius: 5px;
-    display: inline-block;
+    color: #fff; /* Default text color for UV index */
+    display: inline-block; /* Make the UV element a block-level element */
+    margin-top: 10px;
   }
   
-  /* UV Index Color Coding */
   .uv.green {
-    background-color: #28a745;
-    color: white;
+    background-color: #28a745; /* Low UV index */
   }
   
   .uv.yellow {
-    background-color: #ffc107;
-    color: black;
+    background-color: #ffc107; /* Moderate UV index */
+    color: #333; /* Darker text color for readability on yellow */
+  }
+  
+  .uv.orange {
+    background-color: orange; /* High UV index */
   }
   
   .uv.red {
-    background-color: #dc3545;
-    color: white;
+    background-color: #dc3545; /* Very high UV index */
+  }
+  
+  .uv.purple {
+    background-color: purple; /* Extreme UV index */
   }
   
   /* 5-Day Forecast */
   .fiveDays {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
   }
   
   .fiveDays div {
-    background-color: #ffffff;
-    border: 1px solid #007bff;
-    padding: 10px;
-    margin: 10px;
+    background-color: #f9fafb;
+    border: 1px solid #ff5e62;
     border-radius: 8px;
+    padding: 10px;
     text-align: center;
-    width: 100px;
+    width: 18%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .fiveDays div:hover {
+    transform: scale(1.05);
+    background-color: #ff9966;
+    color: #fff;
   }
   
   .fiveDays p {
-    margin: 5px 0;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin: 3px 0;
+    color: #333;
   }
   
   .fiveDays img {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
+    margin-bottom: 8px;
   }
   
-  /* Responsive Design */
+  /* Responsive Design for 5-Day Forecast */
   @media (max-width: 768px) {
-    header {
-      font-size: 1.25rem;
-    }
-  
-    .searchContainer .input-group {
-      width: 100%;
-    }
-  
-    .weatherDetails h2 {
-      font-size: 1.15rem;
-    }
-  
-    .weatherDetails p {
-      font-size: 0.9rem;
+    .fiveDays {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
     }
   
     .fiveDays div {
-      width: 90px;
+      width: 30%;
+      flex: 0 0 auto;
     }
   }
   
