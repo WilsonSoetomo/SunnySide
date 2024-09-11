@@ -4,47 +4,93 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How's the Weather Doc?</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <title>Wilson's Wacky Weather Website</title>
+
+    <!-- Bootstrap CSS for layout -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+
+    <!-- FontAwesome for icons -->
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
+
+    <!-- Google Fonts for custom font -->
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
-    <header>Wilson's Wacky Weather Website</header>
-    <aside class="searchContainer">
-      <div class="searchBar">
-        <input
-          type="text"
-          placeholder="search weather here!"
-          class="cityHere"
-        />
-        <button class="searchBarBtn">search</button>
+    <!-- Header -->
+    <header class="text-center py-4 bg-info text-white">
+      <h1><i class="fas fa-cloud-sun"></i> Wilson's Wacky Weather Website</h1>
+    </header>
+
+    <!-- Search Container -->
+    <section class="searchContainer container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control cityHere"
+              placeholder="Search weather here!"
+              aria-label="City search"
+              aria-describedby="search-button"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-primary searchBarBtn"
+                type="button"
+                id="search-button"
+              >
+                <i class="fas fa-search"></i> Search
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="cityHistory">
+
+      <!-- City History -->
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="cityHistory btn-group d-flex flex-wrap"></div>
+        </div>
       </div>
-    </aside>
-    <div class="weatherDetails">
-      <h1 class="cityNameDate"></h1>
-      <img class="weatherIcon">
-      <p>Temp:<span class="temp"></span></p>
-      <p>Wind:<span class="wind"></span></p>
-      <p>Humidity:<span class="humidity"></span></p>
-      <p>UV:<span class="uv"></span></p>
-      <div class="fiveDays"></div>
-    </div>
+    </section>
+
+    <!-- Weather Details -->
+    <section class="weatherDetails container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <h2 class="cityNameDate"></h2>
+          <img class="weatherIcon my-3" alt="Weather icon" />
+          <p>Temperature: <span class="temp"></span> °F</p>
+          <p>Wind Speed: <span class="wind"></span> MPH</p>
+          <p>Humidity: <span class="humidity"></span> %</p>
+          <p>
+            UV Index: <span class="uv badge badge-pill"></span>
+          </p>
+        </div>
+      </div>
+
+      <!-- 5-Day Forecast -->
+      <div class="fiveDays row justify-content-center mt-4"></div>
+    </section>
+
+    <!-- Custom JS -->
     <script src="./script.js"></script>
   </body>
 </html>

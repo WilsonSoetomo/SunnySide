@@ -8,33 +8,21 @@ var inputEl = document.querySelector(".cityHere");
 var currentHour = new Date();
 var fiveDaysDiv = $(".fiveDays");
 
- useEffect(() => {
-    const submitButton = document.querySelector(".submitButton");
-    submitButton.addEventListener("click", () => {
-      getCity(searchedCity.trim());
-    });
-
-    return () => {
-      submitButton.removeEventListener("click", () => {
-        getCity(searchedCity.trim());
-      });
-    };
-  }, [searchedCity]);
-//function to take in a city and does a API search, maybe also appends results on page with dynamic html
+// function to take in a city and do an API search, also appends results on page with dynamic HTML
 function getCity(city, locObj) {
-  console.log("WILSONS CITY --- ", city);
+  console.log("WILSON'S CITY --- ", city);
   fetch(APIcity + `?q=${encodeURI(city)}&appid=${APIkey}`)
     .then((cityRes) => cityRes.json())
-    .then((cityData) => 
-    {
+    .then((cityData) => {
       console.log(cityData);
-      //adding searched city to the list, saving in localStorage
+
+      // Adding searched city to the list, saving in localStorage
       if (!cities.includes(city)) {
         cities.push(city);
         localStorage.setItem("city", JSON.stringify(cities));
         makeCityList();
       }
-      console.log(locObj);
+
       if (cityData.message == "Nothing to geocode") {
         var lat = locObj.lat;
         var lon = locObj.lon;
@@ -42,6 +30,7 @@ function getCity(city, locObj) {
         var lat = cityData.coord.lat;
         var lon = cityData.coord.lon;
       }
+
       fetch(APIcord + `?lat=${lat}&lon=${lon}&appid=${APIkey}`)
         .then((corRes) => corRes.json())
         .then((corData) => {
@@ -49,22 +38,19 @@ function getCity(city, locObj) {
             "src",
             `http://openweathermap.org/img/wn/${corData.current.weather[0].icon}.png`
           );
-          console.log(corData);
           var temp = corData.current.temp;
-          console.log(temp);
           var wind = corData.current.wind_speed;
-          console.log(wind);
           var humidity = corData.current.humidity;
-          console.log(humidity);
           var uv = corData.current.uvi;
-          console.log(uv);
+
           document.querySelector(".cityNameDate").textContent =
             city + " " + currentHour;
           document.querySelector(".temp").textContent =
-            parseInt(temp - 273.15) + " Fehrenheit";
-          document.querySelector(".wind").textContent = wind + "MPH";
+            parseInt((temp - 273.15) * (9 / 5) + 32) + " °F"; // Corrected to Fahrenheit
+          document.querySelector(".wind").textContent = wind + " MPH";
           document.querySelector(".humidity").textContent = humidity + "%";
           document.querySelector(".uv").textContent = uv + " UV index";
+
           if (uv < 4) {
             document.querySelector(".uv").style.backgroundColor = "green";
           } else if (uv < 7) {
@@ -72,31 +58,31 @@ function getCity(city, locObj) {
           } else {
             document.querySelector(".uv").style.backgroundColor = "red";
           }
+
           var daily = corData.daily;
           make5Days(daily);
         });
     });
 }
-//checks for cities stored in localStorage, append them on page if any
 
-function makeCityList() 
-{
+// Checks for cities stored in localStorage, appends them on the page if any
+function makeCityList() {
   cityList.innerHTML = "";
   var cityArr = JSON.parse(localStorage.getItem("city")) || [];
-  //loop through cityArr to make buttons
   for (var i = 0; i < cityArr.length; i++) {
     appendCityList(cityArr[i], i);
   }
 }
-submitBtn.addEventListener("click", function () 
-{
+
+// Submit button click event to trigger getCity function
+submitBtn.addEventListener("click", function () {
   getCity(inputEl.value.trim());
 });
-function make5Days(daily) 
-{
+
+// Function to create the 5-day forecast
+function make5Days(daily) {
   fiveDaysDiv.html("");
   for (i = 1; i < 6; i++) {
-    console.log(daily);
     var div = document.createElement("div");
     var weatherDate = document.createElement("p");
     var icon = document.createElement("img");
@@ -104,12 +90,12 @@ function make5Days(daily)
     var wind = document.createElement("p");
     var humidity = document.createElement("p");
 
-    weatherDate.textContent = new Date(daily[i].dt * 1000);
+    weatherDate.textContent = new Date(daily[i].dt * 1000).toDateString();
     var iconName = daily[i].weather[0].icon;
     icon.src = `http://openweathermap.org/img/wn/${iconName}.png`;
-    temp.textContent = "Temp: " + daily[i].temp.day;
-    wind.textContent = "speed = " + daily[i].wind_speed + "MPH";
-    humidity.textContent = "humidity = " + daily[i].humidity + "%";
+    temp.textContent = "Temp: " + parseInt((daily[i].temp.day - 273.15) * (9 / 5) + 32) + " °F"; // Corrected to Fahrenheit
+    wind.textContent = "Wind: " + daily[i].wind_speed + " MPH";
+    humidity.textContent = "Humidity: " + daily[i].humidity + "%";
 
     div.append(weatherDate);
     div.append(icon);
@@ -119,7 +105,10 @@ function make5Days(daily)
     fiveDaysDiv.append(div);
   }
 }
+
 window.onload = makeCityList;
+
+// Geolocation functions to get current location
 var options = {
   enableHighAccuracy: true,
   timeout: 10000,
@@ -128,11 +117,7 @@ var options = {
 
 function success(pos) {
   var crd = pos.coords;
-  console.log(pos);
-  console.log("Your current position is:");
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
+  console.log("Your current position is:", crd.latitude, crd.longitude);
   getCity("", { lat: crd.latitude, lon: crd.longitude });
 }
 

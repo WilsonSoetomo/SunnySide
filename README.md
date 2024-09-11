@@ -1,19 +1,20 @@
-# Wilson's Wacky Weather Website
+# 🌤️ Wilson's Wacky Weather Website
 
-functional picture 
+![Functional Screenshot](./SunnySide/weathersc.png)
 
-./weather/weathersc.png
+**Wilson's Wacky Weather Website** is a fast and lightweight weather app that provides real-time weather updates for your current location and any city you search for!
 
-website is displayed with a search bar containing mutiple city histories beneath it. When city buttons are pressed commands are given to function to input into the api to search for that cities state.
+## 🔥 Features:
+- **Real-Time Weather**: The website prompts visitors for location access to instantly display the current weather conditions.
+- **City Search History**: Search for cities, and your recent searches are saved as buttons for quick access to past weather checks.
+- **5-Day Forecast**: A clean, minimal design powered by for loops generates a 5-day weather forecast, ensuring all the details you need at a glance.
+- **Dynamic Icons**: Beautiful weather icons are fetched directly from the weather API, adding a visual touch to the forecast.
+- **Lightweight & Fast**: I kept the CSS minimal and optimized the site for faster loading, so you'll get your weather updates without the wait.
 
-css is styled minimally
+## 🚀 How It Works:
+- When the site loads, it prompts for location access to display your current weather.
+- Use the search bar to look up weather for any city! Previously searched cities are stored and displayed beneath the search bar for easy access.
+- Weather data and time are fetched using APIs and JavaScript's `Date.now()` function for accuracy.
+- For loops are used to dynamically create forecast cards and city buttons based on your search history.
 
-I made the website as light as i could for easier loading.
-
-The visitor is prompted by the website for location access to display the current weather conditions in their location. data is displayed on load of the page.
-
-for loops are used to create the 5 days weather forecast and the creation of buttons based on the number of objects stored in the local storage.
-
-icons are imported from the api website with more apis that display the weather.
-
-weather time is displayed with the date now function.
+Check out the **live version** [here](#).
